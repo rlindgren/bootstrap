@@ -319,6 +319,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
     link: function(scope, element, attrs, ngModel) {
       var dateFormat,
           closeOnDateSelection = angular.isDefined(attrs.closeOnDateSelection) ? scope.$parent.$eval(attrs.closeOnDateSelection) : datepickerPopupConfig.closeOnDateSelection,
+          onDateSelection = angular.isDefined(attrs.onDateSelection) ? $parse(attrs.onDateSelection) : angular.noop,
           appendToBody = angular.isDefined(attrs.datepickerAppendToBody) ? scope.$parent.$eval(attrs.datepickerAppendToBody) : datepickerPopupConfig.appendToBody;
 
       scope.showButtonBar = angular.isDefined(attrs.showButtonBar) ? scope.$parent.$eval(attrs.showButtonBar) : datepickerPopupConfig.showButtonBar;
@@ -397,6 +398,9 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
 
         if ( closeOnDateSelection ) {
           scope.isOpen = false;
+        }
+        if ( onDateSelection ) {
+          onDateSelection(originalScope);
         }
       };
 
