@@ -399,7 +399,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         if ( closeOnDateSelection ) {
           scope.isOpen = false;
         }
-        onDateSelection(originalScope);
+        onDateSelection(scope);
       };
 
       element.bind('input change keyup', function() {
