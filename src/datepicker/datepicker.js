@@ -399,9 +399,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         if ( closeOnDateSelection ) {
           scope.isOpen = false;
         }
-        if ( onDateSelection ) {
-          onDateSelection(originalScope);
-        }
+        onDateSelection(originalScope);
       };
 
       element.bind('input change keyup', function() {
