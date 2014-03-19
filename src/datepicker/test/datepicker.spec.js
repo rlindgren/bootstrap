@@ -1050,6 +1050,21 @@ describe('datepicker directive', function () {
         expect(dropdownEl.css('display')).not.toBe('none');
       });
     });
+    
+    describe('`on-date-selection` attribute', function () {
+      beforeEach(inject(function() {
+        $rootScope.close = false;
+        var wrapElement = $compile('<div><input ng-model="date" datepicker-popup on-date-selection="testVar=1" is-open="true"><div>')($rootScope);
+        $rootScope.$digest();
+        assignElements(wrapElement);
+      }));
+
+      it('binds `testVar` to `1` when date is selected', function() {
+        expect($rootScope.testVar).not.toBeDefined();
+        clickOption(17);
+        expect($rootScope.testVar).toEqual(1);
+      });
+    });
 
     describe('button bar', function() {
       var buttons, buttonBarElement;
